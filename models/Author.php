@@ -14,6 +14,7 @@ use Yii;
  */
 class Author extends \yii\db\ActiveRecord
 {
+    public $quantityBooks;
     /**
      * {@inheritdoc}
      */
@@ -41,6 +42,7 @@ class Author extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'quantityBooks' => 'Quantity Books',
         ];
     }
 
@@ -52,5 +54,14 @@ class Author extends \yii\db\ActiveRecord
     public function getBooks()
     {
         return $this->hasMany(Book::className(), ['author_id' => 'id']);
+    }
+    
+    /**
+     * Get a list of authors
+     * @return array
+     */
+    public static function getList() {
+        $all = self::find()->all();
+        return yii\helpers\BaseArrayHelper::map($all, 'id', 'name');
     }
 }
