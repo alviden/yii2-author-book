@@ -15,6 +15,9 @@ $config = [
             'admin' => [
                 'class' => 'app\backend\AdminModule',
             ],
+            'v1' => [
+                'class' => 'app\api\v1\ApiModule',
+            ],
     ],
     'components' => [
         'request' => [
